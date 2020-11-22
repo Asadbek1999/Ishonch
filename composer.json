@@ -1,0 +1,84 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.2.5|^8.0",
+        "fideloper/proxy": "^4.4",
+        "laravel/framework": "^6.20",
+        "laravel/tinker": "^2.5",
+
+        "rebing/graphql-laravel": "^5.1",
+        "laravel/passport": "^7.4|^8.0|^9.0|^10.0"
+    },
+    "require-dev": {
+        "facade/ignition": "^1.16.4",
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "^1.0",
+        "nunomaduro/collision": "^3.0",
+        "phpunit/phpunit": "^8.5.8|^9.3.3"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [],
+            "providers": [
+                "AvoRed\\Framework\\AvoRedProvider"
+            ],
+            "aliases": {
+                "Breadcrumb": "AvoRed\\Framework\\Support\\Facades\\Breadcrumb",
+                "Cart": "AvoRed\\Framework\\Support\\Facades\\Cart",
+                "Menu": "AvoRed\\Framework\\Support\\Facades\\Menu",
+                "Module": "AvoRed\\Framework\\Support\\Facades\\Module",
+                "Payment": "AvoRed\\Framework\\Support\\Facades\\Payment",
+                "Permission": "AvoRed\\Framework\\Support\\Facades\\Permission",
+                "Shipping": "AvoRed\\Framework\\Support\\Facades\\Shipping",
+                "Tab": "AvoRed\\Framework\\Support\\Facades\\Tab",
+                "Widget": "AvoRed\\Framework\\Support\\Facades\\Widget"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "AvoRed\\Framework\\": "app/Packages/avored/framework/src/",
+            "AvoRed\\Assets\\": "app/Packages/avored/assets/src/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeds/"
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "AvoRed\\Framework\\Tests\\": "app/Packages/avored/framework/tests/"
+
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    }
+}
